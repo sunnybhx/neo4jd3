@@ -223,7 +223,7 @@ function Neo4jD3(_selector, _options) {
     }
 
     function appendTextToNode(node) {
-        return node.append('text')
+        /*return node.append('text')
                    .attr('class', function(d) {
                        return 'text' + (icon(d) ? ' icon' : '');
                    })
@@ -239,6 +239,23 @@ function Neo4jD3(_selector, _options) {
                    .html(function(d) {
                        var _icon = icon(d);
                        return _icon ? '&#x' + _icon : d.id;
+                   });*/
+           return node.append('text')
+                   .attr('class', function(d) {
+                       return 'text'; // || ('text' + (icon(d) ? ' icon' : ''));
+                   })
+                   .attr('fill', '#ffffff')
+                   .attr('font-size', function(d) {
+                       return '10px'; // || (icon(d) ? (options.nodeRadius + 'px') : '10px');
+                   })
+                   .attr('pointer-events', 'none')
+                   .attr('text-anchor', 'middle')
+                   .attr('y', function(d) {
+                       return '4px'; // || (icon(d) ? (parseInt(Math.round(options.nodeRadius * 0.32)) + 'px') : '4px');
+                   })
+                   .html(function(d) {
+                       var _icon = icon(d);
+                       return d.properties[_icon] || d.id;
                    });
     }
 
